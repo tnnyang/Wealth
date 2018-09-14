@@ -52,6 +52,13 @@ let sendRequestApi = {
       return res;
     });
   },
+  GetUserInfo: function (data) {
+    let url = util.ServerConfig.request + apiConfig.userApi.pathRegister;
+
+    return http.get(url, data).then(res => {
+      return res;
+    });
+  },
   UpdatePwd: function (data){
     let url = util.ServerConfig.request + apiConfig.userApi.pathRegister + "/" + data.id;
 

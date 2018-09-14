@@ -8,16 +8,16 @@
         <h6>短信验证即登录,未注册将进行创建账号</h6>
         <ul>
           <li class="inputsbox">
-            <input type="text" class="js_phone" value="" placeholder="请输入您的手机号" maxlength="11" v-model="phone" />
+            <input type="text" class="js_phone" value="" placeholder="请输入您的手机号" maxlength="11" v-model="phone" @blur="phoneBlur" />
           </li>
           <li class="inputsbox">
             <input type="text" class="js_vercode" placeholder="请输入短信验证码" maxlength="6" v-model="vercode" />
             <count-down @sendCode="sendCode" :time="time" :isCountDown="isCountDown"></count-down>
           </li>
-          <li class="inputsbox">
+          <li class="inputsbox" v-show="isShowPwdInput">
             <input type="password" class="js_pwd" value="" placeholder="请设置6-20位登录密码" v-model="pwd"/>
           </li>
-          <li class="inputsbox">
+          <li class="inputsbox" v-show="isShowPwdInput">
             <input type="password" class="js_repeatpwd" value="" placeholder="请再次确认您的登录密码" v-model="repeatPwd" />
           </li>
           <li class="errortip" v-show="isShowRegError">{{errorTips}}</li>
@@ -162,6 +162,7 @@ export default {
       isEditPwdCur: false,
       isShowPwdTips: false,
       loginErrorTips: false,
+      isShowPwdInput: true,
       time: 60,
       isCountDown: false,
       phone: "",
@@ -232,6 +233,17 @@ export default {
           this.isReservationEvent = true;
         });
       }
+    },
+    phoneBlur(){
+      let params = {
+        search: this.phone
+      };
+      
+      userApi.GetUserInfo(params).then(res => {
+        if(res.length > 0){
+          this.isShowPwdInput = false;
+        }
+      });
     },
     sendCode(callBack){
       if(this.phone.length < 1){

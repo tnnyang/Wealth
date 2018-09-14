@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div style="background: url(../../../static/images/fundBanner.jpg) no-repeat center top / 1920px 420px;height: 420px;"></div>
+		<div style="background: url(../../static/images/fundBanner.jpg) no-repeat center top / 1920px 420px;height: 420px;"></div>
 		<div class="container">
 			<div class="fund_nav">
 				<ul>

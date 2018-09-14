@@ -89,7 +89,7 @@
 			accountApi.GetCertification(params).then(res => {
 				if(res.length > 0){
 					this.isReal = "已完成";
-				}				
+				}
 			});
 		},
 		methods: {
