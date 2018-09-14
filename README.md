@@ -1,4 +1,4 @@
-# wealth-vue
+# Wealth
 
 > A Vue.js project
 
